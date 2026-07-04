@@ -1,0 +1,43 @@
+# PyCharm
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual env
+venv/
+.venv/
+env/
+ENV/
+
+# Deploy/Build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# env var
+.env
+.env.*
+*.env
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Log
+*.log
+
+# DB
+*.sqlite3
+*.db
+
+.ipynb_checkpoints/
