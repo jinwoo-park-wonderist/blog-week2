@@ -40,4 +40,8 @@ Thumbs.db
 *.sqlite3
 *.db
 
+# Django
+staticfiles/
+media/
+
 .ipynb_checkpoints/
