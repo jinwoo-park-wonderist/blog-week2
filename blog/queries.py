@@ -1,17 +1,19 @@
-from blog.models import Post
+from django.shortcuts import get_object_or_404
+from blog.models import Post, Comment, Tag
 
 
-def get_posts():
-    return Post.objects.select_related("post_author").prefetch_related("tag").order_by("-id")
+def get_post(post_id=None):
+    qs = Post.objects.select_related("post_author").prefetch_related("post_tag")
 
-def get_post(post_id):
-    pass
+    if post_id is None:
+        return qs.order_by("post_author")
+    return get_object_or_404(qs, pk=post_id)
 
 def get_posts_by_tag(post_id):
-    pass
+    return Post.objects.select_related("post_author").prefetch_related("post_tag").order_by("-id")
 
 def get_comments_by_post(post_id):
-    pass
+    return Comment.objects.filter(post=post_id).select_related("comment_author").order_by("id")
 
 def get_tag(tag_id):
-    pass
+    return get_object_or_404(Tag, pk=tag_id)
