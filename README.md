@@ -2,6 +2,7 @@
 1. model real relationships (users / posts / comments / tags)
 2. use the ORM for the queries
 3. wire up the admin.
+4. add Custom User model
 
 ## Model
 ### Required models & fields
