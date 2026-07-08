@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.post_title }}{% endblock %}
+{% block content %}
+<h1>{{ post.post_title }}</h1>
+<p>author: {{ post.post_author.username }}</p>
+<p>
+    tag:
+    {% for tag in post.post_tag.all %}
+        <a href="{% url 'posts_by_tag' tag_id=tag.pk %}">{{ tag.tag_content }}</a>{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        None
+    {% endfor %}
+</p>
+<div>{{ post.post_content }}</div>
+<h2>comment ({{ comments|length }})</h2>
+<ul>
+{% for comment in comments %}
+    <li>{{ comment.comment_author.username }}: {{ comment.comment_content }}</li>
+{% empty %}
+    <li>None</li>
+{% endfor %}
+</ul>
+{% if user.is_authenticated %}
+<h3>add comment</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">submit</button>
+</form>
+{% else %}
+<p><a href="{% url 'login' %}">login</a> needed</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}blog_week2{% endblock %}</title>
+</head>
+<body>
+<header>
+    <a href="{% url 'post_list' %}">post list</a>
+    |
+    <a href="{% url 'tag_list' %}">tag list</a>
+    |
+    {% if user.is_authenticated %}
+        username: {{ user.username }}
+        |
+        nickname: {{ user.nick_name }}
+        |
+        employee level: {{ user.employee_level }}
+        |
+        old? {{ user.is_old }}
+        |
+        <a href="{% url 'post_create' %}">add new post</a>
+        |
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">login</a>
+    {% endif %}
+</header>
+<hr>
+<main>
+{% block content %}
+{% endblock %}
+</main>
+</body>
+</html>

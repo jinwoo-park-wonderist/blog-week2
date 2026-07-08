@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}tag list{% endblock %}
+{% block content %}
+<h1>tag list</h1>
+<ul>
+{% for tag in tags %}
+    <li><a href="{% url 'posts_by_tag' tag_id=tag.pk %}">{{ tag.tag_content }}</a></li>
+{% empty %}
+    <li>None</li>
+{% endfor %}
+</ul>
+
+{% if user.is_authenticated %}
+<h2>add new tag</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ tag_form.as_p }}
+    <button type="submit">submit</button>
+</form>
+{% else %}
+<p><a href="{% url 'login' %}">login</a> needed </p>
+{% endif %}
+{% endblock %}
