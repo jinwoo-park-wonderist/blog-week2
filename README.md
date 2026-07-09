@@ -6,7 +6,10 @@
 
 ## Model
 ### Required models & fields
-- User: use django default user 
+- CustomUser:
+  - nick_name
+  - employee_level
+    - is_old()
 - Post:
   - post_author
   - post_title
